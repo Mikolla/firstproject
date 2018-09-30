@@ -26,8 +26,14 @@ public class UsersDataSet implements Serializable { // Serializable Important to
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name", unique = true, updatable = false)
+    @Column(name = "name", unique = false, updatable = true)
     private String name;
+
+    @Column(name = "login", unique = true, updatable = false)
+    private String login;
+
+    @Column(name = "password", unique = false, updatable = true)
+    private String password;
 
     //Important to Hibernate!
     @SuppressWarnings("UnusedDeclaration")
@@ -45,13 +51,24 @@ public class UsersDataSet implements Serializable { // Serializable Important to
         this.setName(name);
     }
 
-    @SuppressWarnings("UnusedDeclaration")
-    public String getName() {
-        return name;
+
+    public UsersDataSet(long id, String name, String password) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
     }
 
-    public void setName(String name) {
+    public UsersDataSet(String name, String password) {
+        this.setId(-1);
         this.name = name;
+        this.password = password;
+    }
+
+    public UsersDataSet(long id, String name, String login, String password) {
+        this.id = id;
+        this.name = name;
+        this.login = login;
+        this.password = password;
     }
 
     public long getId() {
@@ -62,11 +79,37 @@ public class UsersDataSet implements Serializable { // Serializable Important to
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "UserDataSet{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
