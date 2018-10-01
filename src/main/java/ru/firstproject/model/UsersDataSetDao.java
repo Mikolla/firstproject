@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface UsersDataSetDao {
 
-    long saveUser(User user);
+    long saveUser(UsersDataSet usersDataSet) throws SQLException;
 
     User getUserById(long id);
 
-    void editUser(User user);
+    void editUser(UsersDataSet usersDataSet);
 
     void deleteUser(long id);
 

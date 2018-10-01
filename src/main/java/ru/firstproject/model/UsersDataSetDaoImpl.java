@@ -2,10 +2,7 @@ package ru.firstproject.model;
 
 import ru.firstproject.util.DBHelper;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +11,22 @@ public class UsersDataSetDaoImpl implements UsersDataSetDao {
 
 
     @Override
-    public long saveUser(User user) {
-        return 0;
+    public long saveUser(UsersDataSet usersDataSet) throws SQLException  {
+        long id = 0;
+
+        String query = String.format("insert into users (name, password, login) values ('%s', '%s', '%s')", usersDataSet.getName(), usersDataSet.getPassword(), usersDataSet.getLogin());
+        try (PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            ps.executeUpdate();
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                while(rs.next()) {
+                    id = rs.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return id;
     }
 
     @Override
@@ -25,9 +36,10 @@ public class UsersDataSetDaoImpl implements UsersDataSetDao {
     }
 
     @Override
-    public void editUser(User user) {
+    public void editUser(UsersDataSet usersDataSet) {
 
     }
+
 
     @Override
     public void deleteUser(long id) {

@@ -54,9 +54,13 @@ public class AllUsersServlet extends HttpServlet{
 		String newUserLogin = request.getParameter("login");
 		String newUserPassword = request.getParameter("password");
 		UsersDataSet newUser = new UsersDataSet(-1, newUserName, newUserLogin, newUserPassword);
-
         System.out.println(newUser.toString());
-		response.sendRedirect("/allusers");
+        try {
+            new UsersDataSetDaoImpl().saveUser(newUser);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        response.sendRedirect("/allusers");
 	}
 
 }

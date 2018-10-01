@@ -48,7 +48,9 @@ public class testjdbc {
             System.out.println(user);
         }
 
-
+        UsersDataSet usersDataSet = new UsersDataSet(-1,"aaa", "12345", "ffff");
+        String query = String.format("insert into users (name, password, login) values ('%s', '%s', '%s')", usersDataSet.getName(), usersDataSet.getPassword(), usersDataSet.getLogin());
+        statement.execute(query);
 
         statement.execute("INSERT INTO users (name, login, password) VALUES ('banton', '123q', '567')");
         statement.execute("INSERT INTO users (name, login, password) VALUES ('andon', '123qw', '567')");
