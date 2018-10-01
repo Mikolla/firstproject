@@ -11,16 +11,16 @@
         <a href="${pageContext.request.contextPath}/admin/addUser">Add New User</a>
     </h2>
 
-    <form action="${pageContext.servletContext.contextPath}/addUser" method="POST">
+    <form action="${pageContext.servletContext.contextPath}/allusers" method="POST">
 
             <label for="uName">Username:</label>
             <input type="text" id="uName" name="name" placeholder="Input name"/>
 
-            <label for="uLogin">Role:</label>
+            <label for="uLogin">Login:</label>
             <input type="text" id="uLogin" name="login" placeholder="Input login"/>
 
-            <label for="uPass">Password:</label>
-            <input type="text" id="uPass" name="password" placeholder="Input password"/>
+            <label for="uPassword">Password:</label>
+            <input type="text" id="uPassword" name="password" placeholder="Input password"/>
 
             <input type="submit" align="center" value="Submit"/>
 

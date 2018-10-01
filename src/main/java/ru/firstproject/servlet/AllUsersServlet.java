@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 @WebServlet("/allusers")
@@ -43,4 +44,19 @@ public class AllUsersServlet extends HttpServlet{
 		dispatcher.forward(request, response);
 
 	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+        Enumeration<String> stringEnum =  request.getParameterNames();
+		String newUserName = request.getParameter("name");
+		String newUserLogin = request.getParameter("login");
+		String newUserPassword = request.getParameter("password");
+		UsersDataSet newUser = new UsersDataSet(-1, newUserName, newUserLogin, newUserPassword);
+
+        System.out.println(newUser.toString());
+		response.sendRedirect("/allusers");
+	}
+
 }

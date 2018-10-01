@@ -4,17 +4,15 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * @author v.chibrikov
- *         <p>
- *         Пример кода для курса на https://stepic.org/
- *         <p>
- *         Описание курса и лицензия: https://github.com/vitaly-chibrikov/stepic_java_webserver
- *         CREATE TABLE users
- * (
- *     id bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
- *     name varchar(255)
- * );
- * CREATE UNIQUE INDEX UK_3g1j96g94xpk3lpxl2qbl985x ON users (name);
+ CREATE TABLE users
+ (
+ id bigint(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+ name varchar(256),
+ login varchar(256) NOT NULL,
+ password varchar(256) NOT NULL
+ );
+ CREATE UNIQUE INDEX users_id_uindex ON users (id);
+ CREATE UNIQUE INDEX users_login_uindex ON users (login);
  */
 @Entity
 @Table(name = "users")

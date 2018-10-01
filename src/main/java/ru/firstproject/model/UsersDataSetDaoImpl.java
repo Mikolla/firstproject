@@ -45,11 +45,17 @@ public class UsersDataSetDaoImpl implements UsersDataSetDao {
                         new UsersDataSet(
                                 resultSet.getLong(1),
                                 resultSet.getString(2),
-                                resultSet.getString(3)
+                                resultSet.getString(3),
+                                resultSet.getString(4)
                         ));
+            }
+            for (UsersDataSet user : usersDataSetListList) {
+                System.out.println(user);
             }
             return usersDataSetListList;
         }
+
+
 
     }
 }

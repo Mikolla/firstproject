@@ -50,7 +50,9 @@ public class testjdbc {
 
 
 
-        statement.execute("INSERT INTO users (name, login, password) VALUES ('banton', '123', '567')");
+        statement.execute("INSERT INTO users (name, login, password) VALUES ('banton', '123q', '567')");
+        statement.execute("INSERT INTO users (name, login, password) VALUES ('andon', '123qw', '567')");
+        statement.execute("INSERT INTO users (name, login, password) VALUES ('danton', '123rt', '567')");
 
         resultSet.close();
         statement.close();
