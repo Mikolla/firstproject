@@ -7,9 +7,7 @@
 <body>
 <center>
     <h1>User list</h1>
-    <h2>
-        <a href="${pageContext.request.contextPath}/admin/addUser">Add New User</a>
-    </h2>
+
 
     <form action="${pageContext.servletContext.contextPath}/allusers" method="POST">
 
@@ -23,14 +21,15 @@
             <input type="text" id="uPassword" name="password" placeholder="Input password"/>
 
             <input type="submit" align="center" value="Submit"/>
-
-
     </form>
 
 </center>
+
+
 <div align="center">
+
     <table border="1" cellpadding="5">
-        <caption><h2>List of Users</h2></caption>
+
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -45,25 +44,36 @@
                 <td>${user.login}</td>
                 <td>${user.password}</td>
                 <td>
-                    <a href="${pageContext.servletContext.contextPath}/admin/edit?id=${user.id}">Edit</a>
+                    <a href="${pageContext.servletContext.contextPath}/edituser?id=${user.id}">Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="${pageContext.servletContext.contextPath}/admin/delete?id=${user.id}">Delete</a>
+                    <a href="${pageContext.servletContext.contextPath}/deluser?id=${user.id}">Delete</a>
                 </td>
             </tr>
         </c:forEach>
 
         <tr>
-            <td>id</td>
-            <td>username</td>
-            <td>userlogin</td>
-            <td>userpass</td>
-            <td>
-                <a href="${pageContext.request.contextPath}/admin/addUser">Add New User</a>
+            <form action="${pageContext.servletContext.contextPath}/allusers" method="POST">
 
-                &nbsp;&nbsp;&nbsp;&nbsp;
+                <td></td>
+                <td>
+                <input type="text" id="1uName" name="name" placeholder="Input name"/>
+                </td>
 
-            </td>
-        </tr>
+                <td>
+                <input type="text" id="1uLogin" name="login" placeholder="Input login"/>
+                </td>
+
+                <td>
+                <input type="text" id="1uPassword" name="password" placeholder="Input password"/>
+                </td>
+
+                <td>
+                <input type="submit" align="center" value="add new"/>
+                </td>
+
+
+            </form>
+        </tr>>
 
     </table>
 </div>

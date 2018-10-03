@@ -1,7 +1,6 @@
 package ru.firstproject.servlet;
 
 
-import ru.firstproject.model.User;
 import ru.firstproject.model.UsersDataSet;
 import ru.firstproject.model.UsersDataSetDaoImpl;
 
@@ -13,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
 
 @WebServlet("/allusers")
@@ -26,8 +23,6 @@ public class AllUsersServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//List<User> users = service.getAllUsers();
-
 
         List<UsersDataSet> users = null;
         try {
@@ -49,7 +44,7 @@ public class AllUsersServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-        Enumeration<String> stringEnum =  request.getParameterNames();
+
 		String newUserName = request.getParameter("name");
 		String newUserLogin = request.getParameter("login");
 		String newUserPassword = request.getParameter("password");
