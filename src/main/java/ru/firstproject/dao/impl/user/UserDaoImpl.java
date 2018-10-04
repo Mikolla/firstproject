@@ -1,17 +1,33 @@
-package ru.firstproject.model;
+package ru.firstproject.dao.impl.user;
 
+import ru.firstproject.dao.abstraction.user.UserDao;
+import ru.firstproject.model.User;
 import ru.firstproject.util.DBHelper;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersDataSetDaoImpl implements UsersDataSetDao {
-    Connection connection = DBHelper.getConnection();
+public class UserDaoImpl implements UserDao {
+    private Connection connection;
+
+    {
+        try {
+            connection = DBHelper.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @Override
-    public long saveUser(UsersDataSet usersDataSet) throws SQLException  {
+    public long saveUser(User usersDataSet) throws SQLException  {
         long id = 0;
 
         String query = String.format("insert into users (name, password, login) values ('%s', '%s', '%s')", usersDataSet.getName(), usersDataSet.getPassword(), usersDataSet.getLogin());
@@ -30,14 +46,14 @@ public class UsersDataSetDaoImpl implements UsersDataSetDao {
     }
 
     @Override
-    public UsersDataSet getUserById(long id) throws SQLException {
+    public User getUserById(long id) throws SQLException {
 
         try (Statement statement = connection.createStatement()) {
             String query = String.format("SELECT * FROM users where id='%s'", id);
             ResultSet resultSet = statement.executeQuery(query);
             resultSet.next();
 
-            UsersDataSet usersDataSet = new UsersDataSet(
+            User usersDataSet = new User(
                                 resultSet.getLong(1),
                                 resultSet.getString(2),
                                 resultSet.getString(3),
@@ -49,7 +65,7 @@ public class UsersDataSetDaoImpl implements UsersDataSetDao {
     }
 
     @Override
-    public void editUser(UsersDataSet usersDataSet) {
+    public void editUser(User usersDataSet) {
         System.out.println(usersDataSet.toString());
         try (Statement statement = connection.createStatement()) {
             String query = String.format("update users set name='%s', login='%s', password='%s' where id='%s'",
@@ -70,14 +86,14 @@ public class UsersDataSetDaoImpl implements UsersDataSetDao {
     }
 
     @Override
-    public List<UsersDataSet> getAllUsers() throws SQLException {
+    public List<User> getAllUsers() throws SQLException {
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM users");
 
-            List<UsersDataSet> usersDataSetListList = new ArrayList<>();
+            List<User> usersDataSetListList = new ArrayList<>();
             while (resultSet.next()) {
                 usersDataSetListList.add(
-                        new UsersDataSet(
+                        new User(
                                 resultSet.getLong(1),
                                 resultSet.getString(2),
                                 resultSet.getString(3),

@@ -1,7 +1,7 @@
 package ru.firstproject.servlet;
 
-import ru.firstproject.model.UsersDataSet;
-import ru.firstproject.model.UsersDataSetDaoImpl;
+import ru.firstproject.model.User;
+import ru.firstproject.dao.impl.user.UserDaoImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +14,7 @@ import java.util.Enumeration;
 
 @WebServlet("/edituser")
 public class EditUserServlet extends HttpServlet {
+    UserDaoImpl usersDataSetDao = new UserDaoImpl();
 
     public EditUserServlet()  throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException{
     }
@@ -21,9 +22,9 @@ public class EditUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long userIdToEdit = Long.parseLong(request.getParameter("id"));
-        UsersDataSet userToEdit = null;
+        User userToEdit = null;
         try {
-            userToEdit = (new UsersDataSetDaoImpl()).getUserById(userIdToEdit);
+            userToEdit = usersDataSetDao.getUserById(userIdToEdit);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -40,9 +41,9 @@ public class EditUserServlet extends HttpServlet {
         String newUserName = request.getParameter("name");
         String newUserLogin = request.getParameter("login");
         String newUserPassword = request.getParameter("password");
-        UsersDataSet newUser = new UsersDataSet(userIdToEdit, newUserName, newUserLogin, newUserPassword);
+        User newUser = new User(userIdToEdit, newUserName, newUserLogin, newUserPassword);
         System.out.println(newUser.toString());
-        new UsersDataSetDaoImpl().editUser(newUser);
+        usersDataSetDao.editUser(newUser);
         response.sendRedirect("/allusers");
     }
 

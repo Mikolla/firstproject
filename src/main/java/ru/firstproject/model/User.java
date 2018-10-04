@@ -16,7 +16,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "users")
-public class UsersDataSet implements Serializable { // Serializable Important to Hibernate!
+public class User implements Serializable { // Serializable Important to Hibernate!
     private static final long serialVersionUID = -8706689714326132798L;
 
     @Id
@@ -35,34 +35,34 @@ public class UsersDataSet implements Serializable { // Serializable Important to
 
     //Important to Hibernate!
     @SuppressWarnings("UnusedDeclaration")
-    public UsersDataSet() {
+    public User() {
     }
 
     @SuppressWarnings("UnusedDeclaration")
-    public UsersDataSet(long id, String name) {
+    public User(long id, String name) {
         this.setId(id);
         this.setName(name);
     }
 
-    public UsersDataSet(String name) {
+    public User(String name) {
         this.setId(-1);
         this.setName(name);
     }
 
 
-    public UsersDataSet(long id, String name, String password) {
+    public User(long id, String name, String password) {
         this.id = id;
         this.name = name;
         this.password = password;
     }
 
-    public UsersDataSet(String name, String password) {
+    public User(String name, String password) {
         this.setId(-1);
         this.name = name;
         this.password = password;
     }
 
-    public UsersDataSet(long id, String name, String login, String password) {
+    public User(long id, String name, String login, String password) {
         this.id = id;
         this.name = name;
         this.login = login;

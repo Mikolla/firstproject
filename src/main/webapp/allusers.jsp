@@ -37,6 +37,7 @@
             <th>Password</th>
             <th>Actions</th>
         </tr>
+
         <c:forEach items="${users}" var="user" varStatus="status">
             <tr>
                 <td>${user.id}</td>
@@ -56,19 +57,19 @@
 
                 <td></td>
                 <td>
-                <input type="text" id="1uName" name="name" placeholder="Input name"/>
+                    <input type="text" id="1uName" name="name" placeholder="Input name"/>
                 </td>
 
                 <td>
-                <input type="text" id="1uLogin" name="login" placeholder="Input login"/>
+                    <input type="text" id="1uLogin" name="login" placeholder="Input login"/>
                 </td>
 
                 <td>
-                <input type="text" id="1uPassword" name="password" placeholder="Input password"/>
+                    <input type="text" id="1uPassword" name="password" placeholder="Input password"/>
                 </td>
 
                 <td>
-                <input type="submit" align="center" value="add new"/>
+                    <input type="submit" align="center" value="add new"/>
                 </td>
 
 
@@ -76,6 +77,7 @@
         </tr>>
 
     </table>
+
 </div>
 </body>
 </html>

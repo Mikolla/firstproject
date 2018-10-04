@@ -1,8 +1,8 @@
 package ru.firstproject.servlet;
 
 
-import ru.firstproject.model.UsersDataSet;
-import ru.firstproject.model.UsersDataSetDaoImpl;
+import ru.firstproject.model.User;
+import ru.firstproject.dao.impl.user.UserDaoImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +16,7 @@ import java.util.List;
 
 @WebServlet("/allusers")
 public class AllUsersServlet extends HttpServlet{
+    UserDaoImpl usersDataSetDao = new UserDaoImpl();
 	//private UserService service = UserServiceImpl.getInstance();
 
 	public AllUsersServlet() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
@@ -24,9 +25,9 @@ public class AllUsersServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<UsersDataSet> users = null;
+        List<User> users = null;
         try {
-            users = new UsersDataSetDaoImpl().getAllUsers();
+            users = usersDataSetDao.getAllUsers();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -48,10 +49,10 @@ public class AllUsersServlet extends HttpServlet{
 		String newUserName = request.getParameter("name");
 		String newUserLogin = request.getParameter("login");
 		String newUserPassword = request.getParameter("password");
-		UsersDataSet newUser = new UsersDataSet(-1, newUserName, newUserLogin, newUserPassword);
+		User newUser = new User(-1, newUserName, newUserLogin, newUserPassword);
         System.out.println(newUser.toString());
         try {
-            new UsersDataSetDaoImpl().saveUser(newUser);
+            usersDataSetDao.saveUser(newUser);
         } catch (SQLException e) {
             e.printStackTrace();
         }
