@@ -1,15 +1,18 @@
 package ru.firstproject.dao.impl.user;
 
 import ru.firstproject.dao.abstraction.user.UserDao;
+import ru.firstproject.dao.executor.Executor;
 import ru.firstproject.model.User;
 import ru.firstproject.util.DBHelper;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class UserDaoImpl implements UserDao {
-    private Connection connection;
+  /* private Connection connection;
+
 
     {
         try {
@@ -24,8 +27,18 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
         }
     }
+   */
+
+    private final Executor executor;
+    public UserDaoImpl(Connection connection) {
+        this.executor = new Executor(connection);
+    }
 
 
+
+
+
+/*
     @Override
     public long saveUser(User usersDataSet) throws SQLException  {
         long id = 0;
@@ -44,8 +57,49 @@ public class UserDaoImpl implements UserDao {
 
         return id;
     }
+*/
 
     @Override
+    public long saveUser(User usersDataSet) throws SQLException {
+        return 0;
+    }
+
+
+
+    @Override
+    public User getUserById(long id) throws SQLException {
+        String query = String.format("SELECT * FROM users where id='%s'", id);
+        ResultSet resultSet = executor.execQuery(query, );
+        resultSet.next();
+        User user = new User(
+                resultSet.getLong(1),
+                resultSet.getString(2),
+                resultSet.getString(3),
+                resultSet.getString(4)
+        );
+        return user;
+    }
+
+
+
+
+
+    @Override
+    public void editUser(User usersDataSet) {
+
+    }
+
+    @Override
+    public void deleteUser(long id) throws SQLException {
+
+    }
+
+    @Override
+    public List<User> getAllUsers() throws SQLException {
+        return null;
+    }
+
+ /*   @Override
     public User getUserById(long id) throws SQLException {
 
         try (Statement statement = connection.createStatement()) {
@@ -62,8 +116,10 @@ public class UserDaoImpl implements UserDao {
             return usersDataSet;
 
             }
-    }
+    } */
 
+
+/*
     @Override
     public void editUser(User usersDataSet) {
         System.out.println(usersDataSet.toString());
@@ -75,8 +131,9 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
         }
     }
+    */
 
-
+/*
     @Override
     public void deleteUser(long id) throws SQLException {
         String query = String.format("delete from users where id='%s'", id);
@@ -84,8 +141,9 @@ public class UserDaoImpl implements UserDao {
             boolean resultSet = statement.execute(query);
         }
     }
+    */
 
-    @Override
+ /*   @Override
     public List<User> getAllUsers() throws SQLException {
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM users");
@@ -106,5 +164,9 @@ public class UserDaoImpl implements UserDao {
 
 
 
-    }
+    } */
+
+
+
+
 }

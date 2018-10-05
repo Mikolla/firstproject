@@ -2,6 +2,8 @@ package ru.firstproject.servlet;
 
 import ru.firstproject.model.User;
 import ru.firstproject.dao.impl.user.UserDaoImpl;
+import ru.firstproject.service.abstraction.user.UserService;
+import ru.firstproject.service.impl.user.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +16,9 @@ import java.util.Enumeration;
 
 @WebServlet("/edituser")
 public class EditUserServlet extends HttpServlet {
-    UserDaoImpl usersDataSetDao = new UserDaoImpl();
+
+   // UserDaoImpl usersDataSetDao = new UserDaoImpl(connection);
+   private final UserService userService = new UserServiceImpl();
 
     public EditUserServlet()  throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException{
     }
@@ -24,7 +28,8 @@ public class EditUserServlet extends HttpServlet {
         long userIdToEdit = Long.parseLong(request.getParameter("id"));
         User userToEdit = null;
         try {
-            userToEdit = usersDataSetDao.getUserById(userIdToEdit);
+     //       userToEdit = usersDataSetDao.getUserById(userIdToEdit);
+            userToEdit =  userService.getUserById(userIdToEdit);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -36,7 +41,7 @@ public class EditUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-        Enumeration<String> stringEnum =  request.getParameterNames();
+      /*  Enumeration<String> stringEnum =  request.getParameterNames();
         long userIdToEdit = Long.parseLong(request.getParameter("id"));
         String newUserName = request.getParameter("name");
         String newUserLogin = request.getParameter("login");
@@ -44,7 +49,7 @@ public class EditUserServlet extends HttpServlet {
         User newUser = new User(userIdToEdit, newUserName, newUserLogin, newUserPassword);
         System.out.println(newUser.toString());
         usersDataSetDao.editUser(newUser);
-        response.sendRedirect("/allusers");
+        response.sendRedirect("/allusers"); */
     }
 
 }

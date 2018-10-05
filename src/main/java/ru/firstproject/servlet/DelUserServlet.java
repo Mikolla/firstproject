@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 @WebServlet("/deluser")
 public class DelUserServlet extends HttpServlet {
-    UserDaoImpl usersDataSetDao = new UserDaoImpl();
+  /*  UserDaoImpl usersDataSetDao = new UserDaoImpl(executor);
 
     public DelUserServlet() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
     }
@@ -28,5 +28,5 @@ public class DelUserServlet extends HttpServlet {
         }
         response.sendRedirect("/allusers");
     }
-
+ */
 }

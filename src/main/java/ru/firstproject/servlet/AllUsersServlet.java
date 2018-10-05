@@ -16,8 +16,10 @@ import java.util.List;
 
 @WebServlet("/allusers")
 public class AllUsersServlet extends HttpServlet{
-    UserDaoImpl usersDataSetDao = new UserDaoImpl();
-	//private UserService service = UserServiceImpl.getInstance();
+    //private UserService service = UserServiceImpl.getInstance();
+
+ /*   UserDaoImpl usersDataSetDao = new UserDaoImpl(executor);
+
 
 	public AllUsersServlet() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
 	}
@@ -58,5 +60,5 @@ public class AllUsersServlet extends HttpServlet{
         }
         response.sendRedirect("/allusers");
 	}
-
+   */
 }
