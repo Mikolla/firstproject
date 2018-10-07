@@ -3,6 +3,8 @@ package ru.firstproject.servlet;
 
 import ru.firstproject.model.User;
 import ru.firstproject.dao.impl.user.UserDaoImpl;
+import ru.firstproject.service.abstraction.user.UserService;
+import ru.firstproject.service.impl.user.UserServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,9 +18,7 @@ import java.util.List;
 
 @WebServlet("/allusers")
 public class AllUsersServlet extends HttpServlet{
-    //private UserService service = UserServiceImpl.getInstance();
-
- /*   UserDaoImpl usersDataSetDao = new UserDaoImpl(executor);
+    UserService userService = new UserServiceImpl();
 
 
 	public AllUsersServlet() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
@@ -29,7 +29,7 @@ public class AllUsersServlet extends HttpServlet{
 
         List<User> users = null;
         try {
-            users = usersDataSetDao.getAllUsers();
+            users = userService.getAllUsers();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -54,11 +54,11 @@ public class AllUsersServlet extends HttpServlet{
 		User newUser = new User(-1, newUserName, newUserLogin, newUserPassword);
         System.out.println(newUser.toString());
         try {
-            usersDataSetDao.saveUser(newUser);
+            userService.saveUser(newUser);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         response.sendRedirect("/allusers");
 	}
-   */
+
 }

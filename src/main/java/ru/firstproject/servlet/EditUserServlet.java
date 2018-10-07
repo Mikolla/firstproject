@@ -17,7 +17,7 @@ import java.util.Enumeration;
 @WebServlet("/edituser")
 public class EditUserServlet extends HttpServlet {
 
-   // UserDaoImpl usersDataSetDao = new UserDaoImpl(connection);
+
    private final UserService userService = new UserServiceImpl();
 
     public EditUserServlet()  throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException{
@@ -28,8 +28,7 @@ public class EditUserServlet extends HttpServlet {
         long userIdToEdit = Long.parseLong(request.getParameter("id"));
         User userToEdit = null;
         try {
-     //       userToEdit = usersDataSetDao.getUserById(userIdToEdit);
-            userToEdit =  userService.getUserById(userIdToEdit);
+          userToEdit =  userService.getUserById(userIdToEdit);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -41,15 +40,14 @@ public class EditUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-      /*  Enumeration<String> stringEnum =  request.getParameterNames();
+      //  Enumeration<String> stringEnum =  request.getParameterNames();
         long userIdToEdit = Long.parseLong(request.getParameter("id"));
         String newUserName = request.getParameter("name");
         String newUserLogin = request.getParameter("login");
         String newUserPassword = request.getParameter("password");
         User newUser = new User(userIdToEdit, newUserName, newUserLogin, newUserPassword);
-        System.out.println(newUser.toString());
-        usersDataSetDao.editUser(newUser);
-        response.sendRedirect("/allusers"); */
+        userService.editUser(newUser);
+        response.sendRedirect("/allusers");
     }
 
 }

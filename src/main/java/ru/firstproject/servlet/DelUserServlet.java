@@ -2,6 +2,8 @@ package ru.firstproject.servlet;
 
 
 import ru.firstproject.dao.impl.user.UserDaoImpl;
+import ru.firstproject.service.abstraction.user.UserService;
+import ru.firstproject.service.impl.user.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +15,7 @@ import java.sql.SQLException;
 
 @WebServlet("/deluser")
 public class DelUserServlet extends HttpServlet {
-  /*  UserDaoImpl usersDataSetDao = new UserDaoImpl(executor);
+    UserService userService = new UserServiceImpl();
 
     public DelUserServlet() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
     }
@@ -22,11 +24,11 @@ public class DelUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long userIdToDel = Long.parseLong(request.getParameter("id"));
         try {
-            usersDataSetDao.deleteUser(userIdToDel);
+            userService.deleteUser(userIdToDel);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         response.sendRedirect("/allusers");
     }
- */
+
 }

@@ -29,11 +29,18 @@ public class testclass {
         System.out.println(resultSet.getString(1));
         System.out.println(resultSet.getString(2));
         System.out.println(resultSet.getString(3));
-        System.out.println(resultSet.getString(4)); */
+        System.out.println(resultSet.getString(4));
 
         UserDaoImpl userDao = new UserDaoImpl(DBHelper.getConnection());
-        User user = userDao.getUserById(5);
-        System.out.println(user.toString());
+        User user = userDao.getUserById(1);
+        */
+
+     UserService userService = new UserServiceImpl();
+     User user = userService.getUserById(1);
+     userService.deleteUser(16);
+     userService.editUser(new User(19,"Bigban123", "passik112", "doomer"));
+     userService.getAllUsers().stream().forEach(System.out::println);
+
 
 
     }

@@ -26,8 +26,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public long saveUser(User usersDataSet) throws SQLException {
-        return 0;
+    public long saveUser(User user) throws SQLException {
+        return userDao.saveUser(user);
     }
 
     @Override
@@ -36,17 +36,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void editUser(User usersDataSet) {
-
+    public void editUser(User user) {
+        userDao.editUser(user);
     }
 
     @Override
     public void deleteUser(long id) throws SQLException {
-
+         userDao.deleteUser(id);
     }
 
     @Override
     public List<User> getAllUsers() throws SQLException {
-        return null;
+        return userDao.getAllUsers();
     }
 }
