@@ -13,6 +13,17 @@ import java.io.Serializable;
  );
  CREATE UNIQUE INDEX users_id_uindex ON users (id);
  CREATE UNIQUE INDEX users_login_uindex ON users (login);
+
+ CREATE TABLE users
+ (
+ id bigint(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+ name varchar(256),
+ password varchar(256) NOT NULL,
+ login varchar(256) NOT NULL
+ );
+ CREATE UNIQUE INDEX users_id_uindex ON users (id);
+ CREATE UNIQUE INDEX users_login_uindex ON users (login);
+
  */
 @Entity
 @Table(name = "users")

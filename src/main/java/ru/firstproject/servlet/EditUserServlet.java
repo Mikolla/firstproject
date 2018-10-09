@@ -14,13 +14,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Enumeration;
 
-@WebServlet("/edituser")
+@WebServlet("/admin/edituser")
 public class EditUserServlet extends HttpServlet {
 
 
    private final UserService userService = new UserServiceImpl();
 
-    public EditUserServlet()  throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException{
+    public EditUserServlet() {
     }
 
     @Override
@@ -33,7 +33,7 @@ public class EditUserServlet extends HttpServlet {
             e.printStackTrace();
         }
         request.setAttribute("user", userToEdit);
-        request.getRequestDispatcher("edituser.jsp").forward(request,response);
+        request.getRequestDispatcher("/edituser.jsp").forward(request,response);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class EditUserServlet extends HttpServlet {
         String newUserPassword = request.getParameter("password");
         User newUser = new User(userIdToEdit, newUserName, newUserLogin, newUserPassword);
         userService.editUser(newUser);
-        response.sendRedirect("/allusers");
+        response.sendRedirect("/admin/allusers");
     }
 
 }

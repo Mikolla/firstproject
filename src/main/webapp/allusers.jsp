@@ -9,7 +9,7 @@
     <h1>User list</h1>
 
 
-    <form action="${pageContext.servletContext.contextPath}/allusers" method="POST">
+    <form action="${pageContext.servletContext.contextPath}/admin/allusers" method="POST">
 
             <label for="uName">Username:</label>
             <input type="text" id="uName" name="name" placeholder="Input name"/>
@@ -45,15 +45,15 @@
                 <td>${user.login}</td>
                 <td>${user.password}</td>
                 <td>
-                    <a href="${pageContext.servletContext.contextPath}/edituser?id=${user.id}">Edit</a>
+                    <a href="${pageContext.servletContext.contextPath}/admin/edituser?id=${user.id}">Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="${pageContext.servletContext.contextPath}/deluser?id=${user.id}">Delete</a>
+                    <a href="${pageContext.servletContext.contextPath}/admin/deluser?id=${user.id}">Delete</a>
                 </td>
             </tr>
         </c:forEach>
 
         <tr>
-            <form action="${pageContext.servletContext.contextPath}/allusers" method="POST">
+            <form action="${pageContext.servletContext.contextPath}/admin/allusers" method="POST">
 
                 <td></td>
                 <td>

@@ -8,7 +8,7 @@
 <center>
     <h1>User edit</h1>
 
-    <form action="${pageContext.servletContext.contextPath}/edituser" method="POST">
+    <form action="${pageContext.servletContext.contextPath}/admin/edituser" method="POST">
 
             <input type="hidden" name="id" value="${user.id}">
 

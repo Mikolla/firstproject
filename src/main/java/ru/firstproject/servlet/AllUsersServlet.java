@@ -16,38 +16,29 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/allusers")
+@WebServlet("/admin/allusers")
 public class AllUsersServlet extends HttpServlet{
-    UserService userService = new UserServiceImpl();
+    private UserService userService = new UserServiceImpl();
 
-
-	public AllUsersServlet() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+	public AllUsersServlet()  {
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         List<User> users = null;
         try {
             users = userService.getAllUsers();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
 		request.setAttribute("users", users);
-
 		response.setContentType("text/html");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/allusers.jsp");
 		dispatcher.forward(request, response);
-
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-
 		String newUserName = request.getParameter("name");
 		String newUserLogin = request.getParameter("login");
 		String newUserPassword = request.getParameter("password");
@@ -58,7 +49,7 @@ public class AllUsersServlet extends HttpServlet{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("/allusers");
+        response.sendRedirect("/admin/allusers");
 	}
 
 }

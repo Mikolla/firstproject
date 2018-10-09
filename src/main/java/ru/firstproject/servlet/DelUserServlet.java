@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/deluser")
+@WebServlet("/admin/deluser")
 public class DelUserServlet extends HttpServlet {
-    UserService userService = new UserServiceImpl();
+    private UserService userService = new UserServiceImpl();
 
-    public DelUserServlet() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+    public DelUserServlet()  {
     }
 
     @Override
@@ -28,7 +28,7 @@ public class DelUserServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("/allusers");
+        response.sendRedirect("/admin/allusers");
     }
 
 }

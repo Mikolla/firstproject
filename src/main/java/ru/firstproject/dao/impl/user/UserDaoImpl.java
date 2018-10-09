@@ -17,8 +17,6 @@ public class UserDaoImpl implements UserDao {
         this.executor = new Executor(connection);
     }
 
-
-
     @Override
     public long saveUser(User user) throws SQLException {
         String query = String.format("insert into users (name, login, password) values ('%s', '%s', '%s')", user.getName(), user.getLogin(), user.getPassword());
@@ -36,15 +34,13 @@ public class UserDaoImpl implements UserDao {
                 User user = new User(
                         resultSet.getLong(1),
                         resultSet.getString(2),
-                        resultSet.getString(4),
-                        resultSet.getString(3));
+                        resultSet.getString(3),
+                        resultSet.getString(4));
                 return user;
             }
         });
         return user;
     }
-
-
 
     @Override
     public List<User> getAllUsers() throws SQLException {
@@ -57,8 +53,8 @@ public class UserDaoImpl implements UserDao {
                         User user = new User(
                                 resultSet.getLong(1),
                                 resultSet.getString(2),
-                                resultSet.getString(4),
-                                resultSet.getString(3));
+                                resultSet.getString(3),
+                                resultSet.getString(4));
                         userList.add(user);
                     }
                     return userList;
@@ -67,15 +63,12 @@ public class UserDaoImpl implements UserDao {
         return users;
     }
 
-
     @Override
     public void editUser(User user) {
         String query = String.format("update users set name='%s', login='%s', password='%s' where id='%s'",
         user.getName(), user.getLogin(), user.getPassword(), user.getId());
         executor.execUpdate(query);
     }
-
-
 
     @Override
     public void deleteUser(long id) throws SQLException {
