@@ -18,14 +18,16 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public long saveUser(User user) throws SQLException {
+    public long saveUser(User user) {
+
         String query = String.format("insert into users (name, login, password) values ('%s', '%s', '%s')", user.getName(), user.getLogin(), user.getPassword());
         long id = executor.execUpdateWithKeys(query);
         return id;
+
     }
 
     @Override
-    public User getUserById(long id) throws SQLException {
+    public User getUserById(long id) {
         String query = String.format("SELECT * FROM users where id='%s'", id);
         User user = executor.execQuery(query, new ExecutorHelper<User>() {
             @Override
@@ -43,7 +45,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> getAllUsers() throws SQLException {
+    public List<User> getAllUsers() {
             String query = "SELECT * FROM users";
             List<User> users = executor.execQuery(query, new ExecutorHelper<List<User>>() {
                 @Override
@@ -71,7 +73,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void deleteUser(long id) throws SQLException {
+    public void deleteUser(long id) {
         String query = String.format("delete from users where id='%s'", id);
         executor.execUpdate(query);
     }

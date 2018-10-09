@@ -26,11 +26,7 @@ public class AllUsersServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<User> users = null;
-        try {
-            users = userService.getAllUsers();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        users = userService.getAllUsers();
 		request.setAttribute("users", users);
 		response.setContentType("text/html");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/allusers.jsp");
@@ -43,12 +39,7 @@ public class AllUsersServlet extends HttpServlet{
 		String newUserLogin = request.getParameter("login");
 		String newUserPassword = request.getParameter("password");
 		User newUser = new User(-1, newUserName, newUserLogin, newUserPassword);
-        System.out.println(newUser.toString());
-        try {
-            userService.saveUser(newUser);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        userService.saveUser(newUser);
         response.sendRedirect("/admin/allusers");
 	}
 

@@ -23,11 +23,7 @@ public class DelUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long userIdToDel = Long.parseLong(request.getParameter("id"));
-        try {
-            userService.deleteUser(userIdToDel);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        userService.deleteUser(userIdToDel);
         response.sendRedirect("/admin/allusers");
     }
 

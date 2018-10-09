@@ -26,12 +26,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public long saveUser(User user) throws SQLException {
+    public long saveUser(User user) {
         return userDao.saveUser(user);
     }
 
     @Override
-    public User getUserById(long id) throws SQLException {
+    public User getUserById(long id) {
        return userDao.getUserById(id);
     }
 
@@ -41,12 +41,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(long id) throws SQLException {
+    public void deleteUser(long id) {
          userDao.deleteUser(id);
     }
 
     @Override
-    public List<User> getAllUsers() throws SQLException {
+    public List<User> getAllUsers() {
         return userDao.getAllUsers();
     }
 }

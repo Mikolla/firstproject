@@ -27,11 +27,7 @@ public class EditUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long userIdToEdit = Long.parseLong(request.getParameter("id"));
         User userToEdit = null;
-        try {
-          userToEdit =  userService.getUserById(userIdToEdit);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        userToEdit =  userService.getUserById(userIdToEdit);
         request.setAttribute("user", userToEdit);
         request.getRequestDispatcher("/edituser.jsp").forward(request,response);
     }

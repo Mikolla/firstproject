@@ -9,14 +9,14 @@ import java.util.List;
 
 public interface UserDao {
 
-    long saveUser(User usersDataSet) throws SQLException;
+    long saveUser(User usersDataSet);
 
-    User getUserById(long id) throws SQLException;
+    User getUserById(long id);
 
     void editUser(User user);
 
-    void deleteUser(long id) throws SQLException;
+    void deleteUser(long id);
 
-    List<User> getAllUsers() throws SQLException;
+    List<User> getAllUsers();
 
 }
